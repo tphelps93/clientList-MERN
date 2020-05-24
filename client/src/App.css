@@ -1,0 +1,37 @@
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-out;
+}
+
+th {
+  width: 100%;
+}
+
+#listActions {
+  width: 4.3%;
+}
+
+#listName {
+  width: 5%;
+}
+
+#listEmail {
+  width: 20%;
+}
+
+#listNumber {
+  width: 5%;
+}
