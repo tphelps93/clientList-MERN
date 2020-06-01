@@ -1,25 +1,14 @@
 import React, { Component } from "react";
 import { Table, Container, Button } from "reactstrap";
 import { connect } from "react-redux";
-import {
-  getClients,
-  addClient,
-  deleteClient,
-  setClientToEdit,
-} from "../actions/clientActions";
+import { getClients, addClient, deleteClient } from "../actions/clientActions";
+import { openDetailsModal, openEditModal } from "../actions/modalActions";
 import PropTypes from "prop-types";
 
 class ClientTable extends Component {
   componentDidMount() {
     this.props.getClients();
   }
-
-  toggle = (id) => {
-    this.props.setClientToEdit(id);
-    this.setState({
-      modal: !this.state.modal,
-    });
-  };
 
   onDeleteClick = (id) => {
     this.props.deleteClient(id);
@@ -44,7 +33,7 @@ class ClientTable extends Component {
             outline
             color="warning"
             size="sm"
-            onClick={() => this.toggle(clients._id)}
+            onClick={() => this.props.openEditModal()}
           >
             Edit
           </Button>
@@ -55,7 +44,7 @@ class ClientTable extends Component {
             outline
             color="info"
             size="sm"
-            onClick={this.toggleDetails}
+            onClick={() => this.props.openDetailsModal()}
           >
             Details
           </Button>
@@ -106,5 +95,6 @@ export default connect(mapStateToProps, {
   getClients,
   deleteClient,
   addClient,
-  setClientToEdit,
+  openDetailsModal,
+  openEditModal,
 })(ClientTable);

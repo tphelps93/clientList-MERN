@@ -16,10 +16,11 @@ import PropTypes from "prop-types";
 class ClientModal extends Component {
   state = {
     modal: false,
-    name: "",
-    email: "",
-    number: "",
   };
+
+  componentDidMount() {
+    this.props.addClient();
+  }
 
   toggle = () => {
     this.setState({

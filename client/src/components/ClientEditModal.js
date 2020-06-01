@@ -11,21 +11,18 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { editClient } from "../actions/clientActions";
+import { openEditModal } from "../actions/modalActions";
+import { closeEditModal } from "../actions/modalActions";
 import PropTypes from "prop-types";
 
 class ClientEditModal extends Component {
-  state = {
-    modal: false,
-  };
-
   componentDidMount() {
     this.props.editClient();
   }
 
   toggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    });
+    if (this.props.modal.isEditModalOpen) this.props.closeEditModal();
+    else this.props.openEditModal();
   };
 
   onChange = (e) => {
@@ -39,53 +36,57 @@ class ClientEditModal extends Component {
     this.toggle();
   };
 
+  displayClient = (clients, _id) => {
+    return (
+      <FormGroup key={_id} timeout={500} classNames="fade">
+        <Label for="name"> Name </Label>
+        <Input
+          type="text"
+          name="name"
+          id="client"
+          value={clients.name}
+          onChange={this.onChange}
+        ></Input>
+
+        <Label for="email"> Email </Label>
+        <Input
+          type="text"
+          name="email"
+          id="client"
+          value={clients.email}
+          onChange={this.onChange}
+        ></Input>
+
+        <Label for="number"> Number </Label>
+        <Input
+          type="text"
+          name="number"
+          id="number"
+          value={clients.number}
+          onChange={this.onChange}
+        ></Input>
+
+        <Button color="dark" style={{ marginTop: "2rem" }} block>
+          Submit Client Edit
+        </Button>
+      </FormGroup>
+    );
+  };
+
   render() {
     const { clients } = this.props.client;
     return (
       // Split button into separate component
       <div>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem", marginLeft: "1rem" }}
-          onClick={this.toggle}
+        <Modal
+          isOpen={this.props.modal.isEditModalOpen}
+          toggle={this.toggle}
+          style={{ padding: "50px" }}
         >
-          Edit
-        </Button>
-
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}> Edit</ModalHeader>
-
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for="name"> Name </Label>
-                <Input
-                  type="text"
-                  name="name"
-                  id="client"
-                  value={clients.name}
-                  onChange={this.onChange}
-                ></Input>
-                <Label for="email"> Email </Label>
-                <Input
-                  type="text"
-                  name="email"
-                  id="client"
-                  value={clients.email}
-                  onChange={this.onChange}
-                ></Input>
-                <Label for="number"> Number </Label>
-                <Input
-                  type="text"
-                  name="number"
-                  id="number"
-                  value={clients.number}
-                  onChange={this.onChange}
-                ></Input>
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Submit Client Edit
-                </Button>
-              </FormGroup>
+              {clients.map(this.displayClient)}
             </Form>
           </ModalBody>
         </Modal>
@@ -101,6 +102,11 @@ ClientEditModal.propTypes = {
 
 const mapStateToProps = (state) => ({
   client: state.client,
+  modal: state.modal,
 });
 
-export default connect(mapStateToProps, { editClient })(ClientEditModal);
+export default connect(mapStateToProps, {
+  editClient,
+  openEditModal,
+  closeEditModal,
+})(ClientEditModal);

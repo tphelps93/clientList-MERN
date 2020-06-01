@@ -5,7 +5,6 @@ import {
   ADD_CLIENT,
   CLIENTS_LOADING,
   EDIT_CLIENT,
-  VIEW_CLIENT,
   SET_CURRENT_EDIT_CLIENT,
 } from "./types";
 

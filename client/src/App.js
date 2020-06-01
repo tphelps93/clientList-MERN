@@ -4,6 +4,7 @@ import ClientTable from "./components/ClientTable";
 import ClientModal from "./components/ClientModal";
 import { Container } from "reactstrap";
 import ClientEditModal from "./components/ClientEditModal.js";
+import ClientDetailsModal from "./components/ClientDetailsModal.js";
 
 import store from "./store";
 import { Provider } from "react-redux";
@@ -21,6 +22,7 @@ class App extends Component {
             <ClientModal />
             <ClientTable />
             <ClientEditModal />
+            <ClientDetailsModal />
           </Container>
         </div>
       </Provider>
