@@ -17,7 +17,9 @@
     "concurrently": "^5.2.0",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
-    "mongoose": "^5.9.10"
+    "mongoose": "^5.9.10",
+    "react-redux-form": "^1.16.14",
+    "redux-form": "^8.3.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

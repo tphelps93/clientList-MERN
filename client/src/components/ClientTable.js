@@ -14,6 +14,10 @@ class ClientTable extends Component {
     this.props.deleteClient(id);
   };
 
+  openEditModal = (id) => {
+    this.props.openEditModal(id);
+  };
+
   renderClient = (clients, _id) => {
     return (
       <tr key={_id} timeout={500} classNames="fade">
@@ -33,7 +37,7 @@ class ClientTable extends Component {
             outline
             color="warning"
             size="sm"
-            onClick={() => this.props.openEditModal()}
+            onClick={() => this.openEditModal(clients._id)}
           >
             Edit
           </Button>

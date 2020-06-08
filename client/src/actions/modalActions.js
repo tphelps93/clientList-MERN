@@ -5,7 +5,7 @@ import {
   CLOSE_DETAILS_MODAL,
 } from "./types";
 
-export const openEditModal = () => {
+export const openEditModal = (id) => {
   return {
     type: OPEN_EDIT_MODAL,
     modal: true,

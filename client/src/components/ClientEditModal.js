@@ -10,9 +10,8 @@ import {
   Input,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { editClient } from "../actions/clientActions";
-import { openEditModal } from "../actions/modalActions";
-import { closeEditModal } from "../actions/modalActions";
+import { editClient, setClientToEdit } from "../actions/clientActions";
+import { openEditModal, closeEditModal } from "../actions/modalActions";
 import PropTypes from "prop-types";
 
 class ClientEditModal extends Component {
@@ -26,7 +25,7 @@ class ClientEditModal extends Component {
   };
 
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ value: e.target.value });
   };
 
   onSubmit = (e) => {
@@ -109,4 +108,5 @@ export default connect(mapStateToProps, {
   editClient,
   openEditModal,
   closeEditModal,
+  setClientToEdit,
 })(ClientEditModal);
