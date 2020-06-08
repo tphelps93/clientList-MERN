@@ -48,7 +48,7 @@ class ClientTable extends Component {
             outline
             color="info"
             size="sm"
-            onClick={() => this.props.openDetailsModal()}
+            onClick={() => this.props.openDetailsModal(clients._id)}
           >
             Details
           </Button>

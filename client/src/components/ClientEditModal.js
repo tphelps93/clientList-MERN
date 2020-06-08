@@ -82,7 +82,7 @@ class ClientEditModal extends Component {
           toggle={this.toggle}
           style={{ padding: "50px" }}
         >
-          <ModalHeader toggle={this.toggle}> Edit</ModalHeader>
+          <ModalHeader toggle={this.toggle}> Edit Client</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               {clients.map(this.displayClient)}
