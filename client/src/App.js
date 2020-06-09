@@ -5,9 +5,7 @@ import ClientModal from "./components/ClientModal";
 import { Container } from "reactstrap";
 import ClientEditModal from "./components/ClientEditModal.js";
 import ClientDetailsModal from "./components/ClientDetailsModal.js";
-
-import store from "./store";
-import { Provider } from "react-redux";
+import { connect } from "react-redux";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -15,19 +13,22 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <AppNavbar />
-          <Container>
-            <ClientModal />
-            <ClientTable />
-            <ClientEditModal />
-            <ClientDetailsModal />
-          </Container>
-        </div>
-      </Provider>
+      <div className="App">
+        <AppNavbar />
+        <Container>
+          <ClientModal />
+          <ClientTable />
+          <ClientEditModal />
+          <ClientDetailsModal />
+        </Container>
+      </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  client: state.client,
+  modal: state.modal,
+});
+
+export default connect(mapStateToProps)(App);

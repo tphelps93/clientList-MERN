@@ -20,8 +20,11 @@ class ClientEditModal extends Component {
   }
 
   toggle = () => {
-    if (this.props.modal.isEditModalOpen) this.props.closeEditModal();
-    else this.props.openEditModal();
+    if (this.props.modal.isEditModalOpen) {
+      this.props.closeEditModal();
+    } else {
+      this.props.openEditModal();
+    }
   };
 
   onChange = (e) => {
@@ -35,15 +38,15 @@ class ClientEditModal extends Component {
     this.toggle();
   };
 
-  displayClient = (clients, _id) => {
+  displayClient = (client) => {
     return (
-      <FormGroup key={_id} timeout={500} classNames="fade">
+      <FormGroup key={client["_id"]} timeout={500} classNames="fade">
         <Label for="name"> Name </Label>
         <Input
           type="text"
           name="name"
           id="client"
-          value={clients.name}
+          value={client.name}
           onChange={this.onChange}
         ></Input>
 
@@ -52,7 +55,7 @@ class ClientEditModal extends Component {
           type="text"
           name="email"
           id="client"
-          value={clients.email}
+          value={client.email}
           onChange={this.onChange}
         ></Input>
 
@@ -61,7 +64,7 @@ class ClientEditModal extends Component {
           type="text"
           name="number"
           id="number"
-          value={clients.number}
+          value={client.number}
           onChange={this.onChange}
         ></Input>
 
@@ -85,7 +88,7 @@ class ClientEditModal extends Component {
           <ModalHeader toggle={this.toggle}> Edit Client</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              {clients.map(this.displayClient)}
+              {this.displayClient(clients[0])}
             </Form>
           </ModalBody>
         </Modal>
