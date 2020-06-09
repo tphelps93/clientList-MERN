@@ -38,45 +38,9 @@ class ClientEditModal extends Component {
     this.toggle();
   };
 
-  displayClient = (client) => {
-    return (
-      <FormGroup key={client["_id"]} timeout={500} classNames="fade">
-        <Label for="name"> Name </Label>
-        <Input
-          type="text"
-          name="name"
-          id="client"
-          value={client.name}
-          onChange={this.onChange}
-        ></Input>
-
-        <Label for="email"> Email </Label>
-        <Input
-          type="text"
-          name="email"
-          id="client"
-          value={client.email}
-          onChange={this.onChange}
-        ></Input>
-
-        <Label for="number"> Number </Label>
-        <Input
-          type="text"
-          name="number"
-          id="number"
-          value={client.number}
-          onChange={this.onChange}
-        ></Input>
-
-        <Button color="dark" style={{ marginTop: "2rem" }} block>
-          Submit Client Edit
-        </Button>
-      </FormGroup>
-    );
-  };
-
   render() {
     const { clients } = this.props.client;
+    console.log(clients.name);
     return (
       // Split button into separate component
       <div>
@@ -88,7 +52,38 @@ class ClientEditModal extends Component {
           <ModalHeader toggle={this.toggle}> Edit Client</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              {this.displayClient(clients[0])}
+              <FormGroup timeout={500} classNames="fade">
+                <Label for="name"> Name </Label>
+                <Input
+                  type="text"
+                  name="name"
+                  id="client"
+                  value={clients.name}
+                  onChange={this.onChange}
+                ></Input>
+
+                <Label for="email"> Email </Label>
+                <Input
+                  type="text"
+                  name="email"
+                  id="client"
+                  value={clients.name}
+                  onChange={this.onChange}
+                ></Input>
+
+                <Label for="number"> Number </Label>
+                <Input
+                  type="text"
+                  name="number"
+                  id="number"
+                  value={clients.number}
+                  onChange={this.onChange}
+                ></Input>
+
+                <Button color="dark" style={{ marginTop: "2rem" }} block>
+                  Submit Client Edit
+                </Button>
+              </FormGroup>
             </Form>
           </ModalBody>
         </Modal>

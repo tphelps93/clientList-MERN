@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Container, Button } from "reactstrap";
+import { Table, Container, Button, Modal } from "reactstrap";
 import { connect } from "react-redux";
 import { getClients, addClient, deleteClient } from "../actions/clientActions";
 import { openDetailsModal, openEditModal } from "../actions/modalActions";
@@ -14,11 +14,14 @@ class ClientTable extends Component {
     this.props.deleteClient(id);
   };
 
-  openEditModal = (id) => {
+  openEditModal = (id, index) => {
+    this.setState({
+      requiredItem: index,
+    });
     this.props.openEditModal(id);
   };
 
-  renderClient = (clients, _id) => {
+  renderClient = (client, _id) => {
     return (
       <tr key={_id} timeout={500} classNames="fade">
         <td>
@@ -26,7 +29,7 @@ class ClientTable extends Component {
             className="remove-btn"
             color="danger"
             size="sm"
-            onClick={() => this.onDeleteClick(clients._id)}
+            onClick={() => this.onDeleteClick()}
           >
             &times;
           </Button>
@@ -37,7 +40,9 @@ class ClientTable extends Component {
             outline
             color="warning"
             size="sm"
-            onClick={() => this.openEditModal(clients._id)}
+            onClick={() => {
+              this.openEditModal();
+            }}
           >
             Edit
           </Button>
@@ -48,14 +53,14 @@ class ClientTable extends Component {
             outline
             color="info"
             size="sm"
-            onClick={() => this.props.openDetailsModal(clients._id)}
+            onClick={() => this.props.openDetailsModal()}
           >
             Details
           </Button>
         </td>
-        <td>{clients.name}</td>
-        <td>{clients.email}</td>
-        <td>{clients.number}</td>
+        <td>{client.name}</td>
+        <td>{client.email}</td>
+        <td>{client.number}</td>
       </tr>
     );
   };
@@ -93,6 +98,7 @@ ClientTable.propTypes = {
 
 const mapStateToProps = (state) => ({
   client: state.client,
+  requiredItem: state.requiredItem,
 });
 
 export default connect(mapStateToProps, {
