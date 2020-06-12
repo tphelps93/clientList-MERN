@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Container, Button, Modal } from "reactstrap";
+import { Table, Container, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { getClients, addClient, deleteClient } from "../actions/clientActions";
 import { openDetailsModal, openEditModal } from "../actions/modalActions";

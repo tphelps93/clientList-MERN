@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 // @access  Public
 router.delete("/:id", (req, res) => {
   Client.findById(req.params.id)
-    .then((client) => client.remove().then(() => res.json({ success: true })))
+    .then((client) => client.deleteOne().then(() => res.json({ success: true })))
     .catch((err) => res.status(404).json({ success: false }));
 });
 

@@ -10,14 +10,14 @@ import {
   Input,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { editClient, setClientToEdit } from "../actions/clientActions";
+// import { editClient, setClientToEdit } from "../actions/clientActions";
 import { openEditModal, closeEditModal } from "../actions/modalActions";
 import PropTypes from "prop-types";
 
 class ClientEditModal extends Component {
-  componentDidMount() {
-    this.props.editClient();
-  }
+  // componentDidMount() {
+  //   this.props.editClient();
+  // }
 
   toggle = () => {
     if (this.props.modal.isEditModalOpen) {
@@ -40,7 +40,6 @@ class ClientEditModal extends Component {
 
   render() {
     const { clients } = this.props.client;
-    console.log(clients.name);
     return (
       // Split button into separate component
       <div>
@@ -103,8 +102,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  editClient,
+  // editClient,
   openEditModal,
   closeEditModal,
-  setClientToEdit,
+  // setClientToEdit,
 })(ClientEditModal);

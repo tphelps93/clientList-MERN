@@ -4,8 +4,6 @@ import {
   DELETE_CLIENT,
   ADD_CLIENT,
   CLIENTS_LOADING,
-  EDIT_CLIENT,
-  SET_CURRENT_EDIT_CLIENT,
 } from "./types";
 
 export const getClients = () => (dispatch) => {
@@ -19,7 +17,7 @@ export const getClients = () => (dispatch) => {
 };
 
 export const addClient = (client) => (dispatch) => {
-  axios.post("/api/clients", client).then((res) =>
+  axios.post("/api/clients/", client).then((res) =>
     dispatch({
       type: ADD_CLIENT,
       payload: res.data,
@@ -42,18 +40,18 @@ export const setClientsLoading = () => {
   };
 };
 
-export const editClient = (id) => (dispatch) => {
-  axios.put(`/api/clients/${id}`).then((res) =>
-    dispatch({
-      type: EDIT_CLIENT,
-      payload: res.data,
-    })
-  );
-};
+// export const editClient = (id) => (dispatch) => {
+//   axios.put(`/api/clients/${id}`).then((res) =>
+//     dispatch({
+//       type: EDIT_CLIENT,
+//       payload: res.data,
+//     })
+//   );
+// };
 
-export const setClientToEdit = (id) => (dispatch) => {
-  dispatch({
-    type: SET_CURRENT_EDIT_CLIENT,
-    payload: id,
-  });
-};
+// export const setClientToEdit = (id) => (dispatch) => {
+//   dispatch({
+//     type: SET_CURRENT_EDIT_CLIENT,
+//     payload: id,
+//   });
+// };
